@@ -585,6 +585,7 @@
                                     :placeholder="composeInputPlaceholder"
                                     @keydown.enter.exact.prevent="onEnterPressed"
                                     @keydown.enter.shift.exact.prevent="onShiftEnterPressed"
+                                    @keydown.enter.ctrl.exact.prevent="onCtrlEnterPressed"
                                     @paste="onMessagePaste"
                                 ></textarea>
                                 <div class="shrink-0 self-center flex items-center gap-0">
@@ -7644,16 +7645,20 @@ export default {
         },
         onEnterPressed: function () {
             // add new line on mobile
-            if (this.isMobile) {
-                this.addNewLine();
-                return;
-            }
+            //if (this.isMobile) {
+            //    this.addNewLine();
+            //    return;
+            //}
 
-            // send message on desktop
-            this.sendMessage();
+            // // send message on desktop
+            //this.sendMessage();
+            this.addNewLine();
         },
         onShiftEnterPressed: function () {
             this.addNewLine();
+        },
+        onCtrlEnterPressed: function () {
+            this.sendMessage();
         },
         addFilesToMessage: function () {
             this.$refs["file-input"].click();
